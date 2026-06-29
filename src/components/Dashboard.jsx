@@ -9,7 +9,7 @@ export default function Dashboard() {
       </div>
       <div className="month">
         <h2>
-          June 2026
+          June 2025
         </h2>
       </div>
     </div>
