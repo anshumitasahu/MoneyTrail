@@ -1,0 +1,50 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background-color: #ffffff;
+  margin-bottom: 32px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.title {
+  text-decoration: none;
+  font-size: 1.7rem;
+}
+
+.Money {
+  color: #2563EB;
+  font-weight: 700;
+}
+
+.Trail {
+  font-weight: 800;
+  color: #111827;
+}
+
+.pages ul {
+  display: flex;
+  list-style-type: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 600;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #2563EB;
+}
+
+.active {
+  color: #111827;
+  border-bottom-color: #2563EB;
+}

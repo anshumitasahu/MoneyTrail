@@ -1,0 +1,256 @@
+.expense-tracker {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  align-items: flex-start;
+  background: #f9fafb;
+  height: 100vh;
+}
+
+.add-expenses {
+
+  width: 320px;
+  top: 24px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.add-expenses h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.add-expenses form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.add-expenses input {
+  width: 100%;
+  height: 42px;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+}
+
+.add-expenses input:focus,
+.add-expenses select:focus {
+  border-color: #2563eb;
+}
+
+.category-add {
+  width: 100%;
+  height: 42px;
+  padding: 10px 36px 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  background-color: #ffffff;
+}
+
+.submit-btn {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.all-expenses {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  flex: 1;
+  overflow-y: scroll;
+  height: 438px;
+}
+
+.header-expense-list {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.search-expenses-and-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 5px;
+  gap: 12px;
+}
+
+.search-expenses input[type="text"] {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-size: 16px;
+}
+
+.filter-expenses {
+  display: flex;
+  gap: 20px;
+}
+
+.total-number-expenses {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.final-expense-card {
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.number {
+  border: 1px solid rgb(188, 193, 225);
+  background-color: #f7f9ff;
+}
+
+.total {
+  border: 1px solid #c5e6c9;
+  background-color: #f4fff6;
+}
+
+.final-expense-card-img {
+  padding: 3px 6px;
+  border-radius: 10px;
+}
+
+.number-img {
+  background-color: #0046b8;
+}
+
+.total-img {
+  background-color: #00b815;
+}
+
+.info-title {
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.info-p {
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.select p {
+  font-size: 14px
+}
+
+.select select {
+  border: 1px solid rgba(128, 128, 128, 0.579);
+  outline: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+
+
+.expense-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+}
+
+.expense-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  transition: 0.2s;
+}
+
+.expense-card:hover {
+  border-color: #2563eb;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+}
+
+.expense-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.expense-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  background: #eff6ff;
+  font-size: 24px;
+}
+
+.expense-info h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.expense-info p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #4d4d4d;
+}
+
+.expense-meta {
+  display: flex;
+  gap: 14px;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.expense-right {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.amount-p {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.date {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(62, 62, 62, 0.805);
+}
+
+.btn-delete button {
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
