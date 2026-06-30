@@ -245,7 +245,7 @@ export default function Expenses() {
               </div>
               <div className="final-expense-card-info total-info">
                 <p className="info-title">Total Amount: </p>
-                <p className="info-p">${sortedExpenses.reduce((sum, expense) => sum + (expense.amount || 0), 0).toFixed(2)}</p>
+                <p className="info-p">₹{sortedExpenses.reduce((sum, expense) => sum + (expense.amount || 0), 0).toFixed(2)}</p>
               </div>
             </div>
           </div>
@@ -277,7 +277,7 @@ export default function Expenses() {
                 <div className="expense-right">
                   <div className="amount-date">
                     <p className="amount-p">
-                      ${expense.amount.toFixed(2)}
+                      ₹{expense.amount.toFixed(2)}
                     </p>
                     <p className="date">{expense.date
                       ? new Date(expense.date).toLocaleDateString("en-GB", {
