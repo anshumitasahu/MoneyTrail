@@ -10,5 +10,5 @@ body {
   font-style: normal;
   width: 100vw;
   padding: 30px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }

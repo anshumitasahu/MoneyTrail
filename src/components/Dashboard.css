@@ -1,24 +1,146 @@
-.dashboard{
+.dashboard {
     padding: 30px;
+    max-width: 1400px;
+    margin: auto;
 }
 
 .head {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    align-items: center;
+}
+
+.welcome h1 {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.month-year {
+    background-color: #f5f5f5;
+    border-radius: 999px;
+    padding: 10px 18px;
 }
 
 .money-map {
     display: flex;
     gap: 30px;
     justify-content: space-between;
+    margin-bottom: 40px;
 }
 
 .money-map-card {
-    padding: 12px 24px;
-    border: 1px solid  rgb(183, 183, 183);
+    padding: 20px 24px;
+    border: 1px solid rgb(183, 183, 183);
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 12px rgba(37, 37, 37, 0.155);
+}
+
+.money-map-card-img {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+}
+
+.money-map-card-info h3 {
+    font-weight: 400;
+    color: rgb(58, 58, 58);
+    font-size: 16px;
+}
+
+.money-map-card-info p {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.current-balance {
+    border: 1px solid rgb(144, 180, 248);
+    background-color: rgb(248, 248, 255);
+}
+
+.current-balance p {
+    color: #0033a2;
+    /* can't decide */
+}
+
+.current-balance span {
+    color: rgb(107, 107, 107);
+    font-size: 14px;
+}
+
+.current-balance-img {
+    background-color: #427eff;
+}
+
+.income {
+    border: 1px solid rgb(145, 187, 145);
+    background-color: rgb(247, 255, 247);
+}
+
+.income p {
+    color: #029060;
+    /* can't decide */
+}
+
+.income span {
+    font-size: 16px;
+    color: rgb(107, 107, 107);
+}
+
+.income-img {
+    background-color: #34c494;
+}
+
+.expenses {
+    border: 1px solid rgb(252, 141, 141);
+    background-color: rgb(249, 241, 242);
+}
+
+.expenses p {
+    color: #c42424;
+    /* can't decide */
+}
+
+.expenses span {
+    font-size: 16px;
+    color: rgb(107, 107, 107);
+}
+
+.expenses-img {
+    background-color: #ff5c5c;
+}
+
+.savings {
+    border: 1px solid goldenrod;
+    background-color: rgb(255, 253, 243);
+}
+
+.savings-img {
+    background-color: #F59E0B;
+}
+
+.savings p {
+    color: #bb7b0c;
+    /* can't decide */
+}
+
+.savings span {
+    font-size: 16px;
+    color: rgb(107, 107, 107);
+}
+
+.chart{
+    display: flex;
+    justify-content: flex-start;
 }
