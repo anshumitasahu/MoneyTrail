@@ -109,7 +109,7 @@ export default function Dashboard() {
           <div className="money-map-card-info savings-info">
             <h3>Savings</h3>
             <p>₹52,400</p>
-            <span>Income - Expenses</span>
+            <span>Saved This Month</span>
           </div>
         </div>
       </div>
@@ -117,21 +117,21 @@ export default function Dashboard() {
       <div className="pie-chart-and-categories">
         <div className="money-piechart">
           <div>
-            <h1>
-              Monthly expenses (category):
+            <h1 className='title-chart'>
+              Expenses by Category:
             </h1>
           </div>
-          <div className="chart">
+          <div className="chart pie-chart">
             <ExpensePieChart data={chartData} />
           </div>
         </div>
         <div className="yearly-expenses">
           <div>
-            <h1>
-              Yearly Expenses(Months):
+            <h1 className='title-chart'>
+              Monthly Expense Trend:
             </h1>
           </div>
-          <div className="chart">
+          <div className="chart line-chart">
             <ExpenseLineChart data={yearlyExpenseData} />
           </div>
         </div>

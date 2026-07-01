@@ -143,10 +143,29 @@
 .chart{
     display: flex;
     justify-content: flex-start;
+    width: 100%;
+    background-color: #efefef90;
+    border: 1px solid rgba(201, 201, 201, 0.519);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
 
 .pie-chart-and-categories {
     display: flex;
     justify-content: space-between;
-    
+    align-items: center;
+}
+
+.line-chart{
+    height: 400px;
+}
+
+.pie-chart {
+    height: 400px;
+    width: 400px;
+}
+
+.title-chart {
+    margin-bottom: 30px;
 }

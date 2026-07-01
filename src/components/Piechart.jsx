@@ -31,7 +31,7 @@ export default function ExpensePieChart({ data }) {
   return (
     <div
       style={{
-        width: "50%",
+        width: "100%",
         height: "350px",
       }}
     >
@@ -43,8 +43,8 @@ export default function ExpensePieChart({ data }) {
             nameKey="name"
             cx="50%"
             cy="50%"
-            innerRadius={70}
-            outerRadius={110}
+            innerRadius={90}
+            outerRadius={150}
             paddingAngle={4}
           >
             {data.map((entry, index) => (
