@@ -1,16 +1,25 @@
-# React + Vite
+# MoneyTrail
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MoneyTrail is a personal finance management application built with React that helps users organize and understand their financial activity. The application allows users to record income and expenses, monitor their current balance and savings, categorize transactions, and analyze spending patterns through interactive charts and visual reports.
 
-Currently, two official plugins are available:
+The primary goal of MoneyTrail is to provide a clean and intuitive interface for everyday financial tracking while presenting meaningful insights through data visualization. The project focuses on creating a practical user experience with modern frontend development practices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Features
+Add, edit, and delete income records
+Add, edit, and delete expense records
+Dashboard with financial overview
+Current balance, income, expenses, and savings summary
+Expense distribution pie chart
+Income vs. expense comparison
+Yearly expense trends
+Categorized transactions
+Local data persistence
+Clean and modern UI
 
-## React Compiler
+Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+React
+JavaScript
+CSS
+Recharts
+Local Storage
