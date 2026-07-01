@@ -144,3 +144,9 @@
     display: flex;
     justify-content: flex-start;
 }
+
+.pie-chart-and-categories {
+    display: flex;
+    justify-content: space-between;
+    
+}

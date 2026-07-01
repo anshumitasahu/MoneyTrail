@@ -1,6 +1,9 @@
 import './Dashboard.css';
 import ExpensePieChart from "./Piechart";
 import { CreditCardIcon, ChartLineUpIcon, ChartLineDownIcon, PiggyBankIcon } from "@phosphor-icons/react";
+import { useEffect, useState } from "react";
+import ExpenseLineChart from "./LineChart";
+
 export default function Dashboard() {
   const today = new Date();
   const month = today.toLocaleString("en-US", {
@@ -8,6 +11,44 @@ export default function Dashboard() {
   });
 
   const year = today.getFullYear();
+
+
+  const [expenses, setExpenses] = useState([]);
+
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("expenses")) || [];
+    setExpenses(stored);
+  }, []);
+
+
+  const categoryTotals = {};
+
+  expenses.forEach((expense) => {
+    categoryTotals[expense.category] =
+      (categoryTotals[expense.category] || 0) + expense.amount;
+  });
+
+  const chartData = Object.entries(categoryTotals).map(([name, value]) => ({
+    name,
+    value,
+  }));
+
+  const months = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
+
+  const monthlyTotals = new Array(12).fill(0);
+
+  expenses.forEach(expense => {
+    const month = new Date(expense.date).getMonth();
+    monthlyTotals[month] += expense.amount;
+  });
+
+  const yearlyExpenseData = months.map((month, index) => ({
+    month,
+    expense: monthlyTotals[index],
+  }));
 
   return (
     <div className="dashboard">
@@ -77,15 +118,22 @@ export default function Dashboard() {
         <div className="money-piechart">
           <div>
             <h1>
-              piechart
+              Monthly expenses (category):
             </h1>
           </div>
           <div className="chart">
-            <ExpensePieChart />
+            <ExpensePieChart data={chartData} />
           </div>
         </div>
-        <div className="categories-dashboard">
-          
+        <div className="yearly-expenses">
+          <div>
+            <h1>
+              Yearly Expenses(Months):
+            </h1>
+          </div>
+          <div className="chart">
+            <ExpenseLineChart data={yearlyExpenseData} />
+          </div>
         </div>
       </div>
     </div>

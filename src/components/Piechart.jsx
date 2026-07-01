@@ -16,18 +16,22 @@ const data = [
 ];
 
 const COLORS = [
-  "#3B82F6",
-  "#22C55E",
-  "#F59E0B",
-  "#EF4444",
-  "#8B5CF6",
+  "#ff9500",
+  "#0072c3",
+  "#a300bc",
+  "#b36f00",
+  "#001aaf",
+  "#b6003d",
+  "#009f10",
+  "#a47e00",
+  "#00558d"
 ];
 
-export default function ExpensePieChart() {
+export default function ExpensePieChart({ data }) {
   return (
     <div
       style={{
-        width: "40%",
+        width: "50%",
         height: "350px",
       }}
     >
@@ -37,7 +41,7 @@ export default function ExpensePieChart() {
             data={data}
             dataKey="value"
             nameKey="name"
-            cx="30%"
+            cx="50%"
             cy="50%"
             innerRadius={70}
             outerRadius={110}
