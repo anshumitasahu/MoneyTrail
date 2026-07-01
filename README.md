@@ -17,7 +17,6 @@ Local data persistence
 Clean and modern UI
 
 Tech Stack
-
 React
 JavaScript
 CSS
