@@ -1,42 +1,55 @@
 .dashboard {
-    padding: 30px;
+    width: 100%;
     max-width: 1400px;
-    margin: auto;
+    margin: 0 auto;
+    padding: clamp(16px, 3vw, 30px);
+    box-sizing: border-box;
 }
 
 .head {
-    margin-bottom: 40px;
+    margin-bottom: clamp(25px, 4vw, 40px);
 }
 
 .header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: 20px;
     align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.welcome {
+    min-width: 0;
 }
 
 .welcome h1 {
-    font-size: 30px;
+    margin: 0;
+    font-size: clamp(22px, 3vw, 30px);
     font-weight: 600;
+    line-height: 1.2;
 }
 
 .month-year {
     background-color: #f5f5f5;
     border-radius: 999px;
     padding: 10px 18px;
+    white-space: nowrap;
 }
 
 .money-map {
-    display: flex;
-    gap: 30px;
-    justify-content: space-between;
-    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 20px;
+    margin-bottom: clamp(25px, 4vw, 40px);
 }
 
 .money-map-card {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     padding: 20px 24px;
     border: 1px solid rgb(183, 183, 183);
-    width: 100%;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -47,31 +60,38 @@
 .money-map-card-img {
     width: 58px;
     height: 58px;
+    min-width: 58px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 14px;
 }
 
+.money-map-card-info {
+    min-width: 0;
+}
+
 .money-map-card-info h3 {
+    margin: 0 0 5px;
     font-weight: 400;
     color: rgb(58, 58, 58);
     font-size: 16px;
 }
 
 .money-map-card-info p {
-    font-size: 30px;
+    margin: 0;
+    font-size: clamp(22px, 3vw, 30px);
     font-weight: 600;
+    overflow-wrap: anywhere;
 }
 
 .current-balance {
-    border: 1px solid rgb(144, 180, 248);
+    border-color: rgb(144, 180, 248);
     background-color: rgb(248, 248, 255);
 }
 
 .current-balance p {
     color: #0033a2;
-    /* can't decide */
 }
 
 .current-balance span {
@@ -84,13 +104,12 @@
 }
 
 .income {
-    border: 1px solid rgb(145, 187, 145);
+    border-color: rgb(145, 187, 145);
     background-color: rgb(247, 255, 247);
 }
 
 .income p {
     color: #029060;
-    /* can't decide */
 }
 
 .income span {
@@ -103,13 +122,12 @@
 }
 
 .expenses {
-    border: 1px solid rgb(252, 141, 141);
+    border-color: rgb(252, 141, 141);
     background-color: rgb(249, 241, 242);
 }
 
 .expenses p {
     color: #c42424;
-    /* can't decide */
 }
 
 .expenses span {
@@ -122,17 +140,12 @@
 }
 
 .savings {
-    border: 1px solid goldenrod;
+    border-color: goldenrod;
     background-color: rgb(255, 253, 243);
-}
-
-.savings-img {
-    background-color: #F59E0B;
 }
 
 .savings p {
     color: #bb7b0c;
-    /* can't decide */
 }
 
 .savings span {
@@ -140,32 +153,46 @@
     color: rgb(107, 107, 107);
 }
 
-.chart{
-    display: flex;
-    justify-content: flex-start;
+.savings-img {
+    background-color: #f59e0b;
+}
+
+.chart {
     width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
     background-color: #efefef90;
     border: 1px solid rgba(201, 201, 201, 0.519);
     border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.05);
-}
-
-.pie-chart-and-categories {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.line-chart{
-    height: 400px;
-}
-
-.pie-chart {
-    height: 400px;
-    width: 400px;
+    padding: clamp(16px, 3vw, 24px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
 }
 
 .title-chart {
-    margin-bottom: 30px;
+    margin: 20px 0 30px;
+}
+
+.pie-chart-and-categories {
+    width: 100%;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+    gap: clamp(20px, 4vw, 50px);
+    align-items: center;
+}
+
+.line-chart {
+    width: 100%;
+    min-width: 0;
+    height: clamp(250px, 40vw, 400px);
+}
+
+.pie-chart {
+    width: min(100%, 400px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
 }
