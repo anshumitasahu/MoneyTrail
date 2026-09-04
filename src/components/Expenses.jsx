@@ -1,6 +1,32 @@
-import { useState, useEffect } from "react";
-import './Expenses.css'
-import { TrashIcon, PlusCircleIcon, HamburgerIcon, CarIcon, FilmSlateIcon, AirplaneTiltIcon, GraduationCapIcon, HeartbeatIcon, ShoppingCartIcon, ReceiptIcon, PackageIcon, ListBulletsIcon, WalletIcon } from "@phosphor-icons/react";
+import { useEffect, useState } from "react";
+import "./Expenses.css";
+import {
+  TrashIcon,
+  PlusCircleIcon,
+  HamburgerIcon,
+  CarIcon,
+  FilmSlateIcon,
+  AirplaneTiltIcon,
+  GraduationCapIcon,
+  HeartbeatIcon,
+  ShoppingCartIcon,
+  ReceiptIcon,
+  PackageIcon,
+  ListBulletsIcon,
+  WalletIcon
+} from "@phosphor-icons/react";
+
+const categories = [
+  "Food",
+  "Transport",
+  "Entertainment",
+  "Travel",
+  "Education",
+  "Healthcare",
+  "Shopping",
+  "Bills",
+  "Other"
+];
 
 const defaultExpenses = [
   { id: 1, name: "Grocery", amount: 50, category: "Food", date: "2023-06-01" },
@@ -10,8 +36,44 @@ const defaultExpenses = [
   { id: 5, name: "Healthcare", amount: 50, category: "Healthcare", date: "2023-06-05" },
   { id: 6, name: "Shopping", amount: 150, category: "Shopping", date: "2023-06-06" },
   { id: 7, name: "Bills", amount: 600, category: "Bills", date: "2023-06-07" },
-  { id: 8, name: "Other", amount: 50, category: "Other", date: "2023-06-08" },
+  { id: 8, name: "Other", amount: 50, category: "Other", date: "2023-06-08" }
 ];
+
+const categoryIcons = {
+  Food: HamburgerIcon,
+  Transport: CarIcon,
+  Entertainment: FilmSlateIcon,
+  Travel: AirplaneTiltIcon,
+  Education: GraduationCapIcon,
+  Healthcare: HeartbeatIcon,
+  Shopping: ShoppingCartIcon,
+  Bills: ReceiptIcon,
+  Other: PackageIcon
+};
+
+const categoryBackgroundColors = {
+  Food: "#E8F5E9",
+  Transport: "#E3F2FD",
+  Entertainment: "#F3E5F5",
+  Travel: "#FFF3E0",
+  Education: "#E8EAF6",
+  Healthcare: "#FCE4EC",
+  Shopping: "#F3E5F5",
+  Bills: "#FFF8E1",
+  Other: "#ECEFF1"
+};
+
+const categoryColors = {
+  Food: "#00c110",
+  Transport: "#0072c3",
+  Entertainment: "#a300bc",
+  Travel: "#b36f00",
+  Education: "#001aaf",
+  Healthcare: "#b6003d",
+  Shopping: "#a200bb",
+  Bills: "#a47e00",
+  Other: "#00558d"
+};
 
 export default function Expenses() {
   const [expenses, setExpenses] = useState(() => {
@@ -23,7 +85,7 @@ export default function Expenses() {
     name: "",
     amount: "",
     category: "Food",
-    date: "",
+    date: ""
   });
 
   const [filters, setFilters] = useState({
@@ -32,6 +94,17 @@ export default function Expenses() {
     sort: ""
   });
 
+  useEffect(() => {
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+  }, [expenses]);
+
+  const handleChange = (e) => {
+    setExpense({
+      ...expense,
+      [e.target.name]: e.target.value
+    });
+  };
+
   const handleFilterChange = (e) => {
     setFilters({
       ...filters,
@@ -39,18 +112,8 @@ export default function Expenses() {
     });
   };
 
-  useEffect(() => {
-    localStorage.setItem("expenses", JSON.stringify(expenses));
-  }, [expenses]);
-
-
-  const handleChange = (e) => {
-    setExpense({ ...expense, [e.target.name]: e.target.value });
-  }
-
   const handleDeleteExpense = (id) => {
-    const updatedExpenses = expenses.filter((expense) => expense.id !== id);
-    setExpenses(updatedExpenses);
+    setExpenses(expenses.filter((expense) => expense.id !== id));
   };
 
   const handleAddExpense = (e) => {
@@ -58,10 +121,10 @@ export default function Expenses() {
 
     const newExpense = {
       id: Date.now(),
-      name: expense.name,
+      name: expense.name.trim(),
       amount: parseFloat(expense.amount),
       category: expense.category,
-      date: expense.date,
+      date: expense.date
     };
 
     setExpenses([...expenses, newExpense]);
@@ -70,19 +133,17 @@ export default function Expenses() {
       name: "",
       amount: "",
       category: "Food",
-      date: "",
+      date: ""
     });
   };
 
-  const filteredExpenses = expenses.filter((expense) => {
-    const matchSearch =
-      expense.name
-        .toLowerCase()
-        .includes(filters.search.toLowerCase());
+  const filteredExpenses = expenses.filter((item) => {
+    const matchSearch = item.name
+      .toLowerCase()
+      .includes(filters.search.toLowerCase());
 
     const matchCategory =
-      filters.category === "" ||
-      expense.category === filters.category;
+      filters.category === "" || item.category === filters.category;
 
     return matchSearch && matchCategory;
   });
@@ -91,62 +152,27 @@ export default function Expenses() {
     switch (filters.sort) {
       case "amount-asc":
         return a.amount - b.amount;
-
       case "amount-desc":
         return b.amount - a.amount;
-
       case "date-asc":
         return new Date(a.date) - new Date(b.date);
-
       case "date-desc":
         return new Date(b.date) - new Date(a.date);
-
       default:
         return 0;
     }
   });
 
-
-  const categoryIcons = {
-    Food: HamburgerIcon,
-    Transport: CarIcon,
-    Entertainment: FilmSlateIcon,
-    Travel: AirplaneTiltIcon,
-    Education: GraduationCapIcon,
-    Healthcare: HeartbeatIcon,
-    Shopping: ShoppingCartIcon,
-    Bills: ReceiptIcon,
-    Other: PackageIcon,
-  };
-
-  const categoryBackgroundColors = {
-    Food: "#E8F5E9",
-    Transport: "#E3F2FD",
-    Entertainment: "#F3E5F5",
-    Travel: "#FFF3E0",
-    Education: "#E8EAF6",
-    Healthcare: "#FCE4EC",
-    Shopping: "#F3E5F5",
-    Bills: "#FFF8E1",
-    Other: "#ECEFF1",
-  };
-
-  const categoryColors = {
-    Food: "#00c110",
-    Transport: "#0072c3",
-    Entertainment: "#a300bc",
-    Travel: "#b36f00",
-    Education: "#001aaf",
-    Healthcare: "#b6003d",
-    Shopping: "#a200bb",
-    Bills: "#a47e00",
-    Other: "#00558d",
-  }
+  const totalAmount = sortedExpenses.reduce(
+    (sum, item) => sum + (item.amount || 0),
+    0
+  );
 
   return (
-    <div className='expense-tracker'>
+    <div className="expense-tracker">
       <div className="add-expenses">
         <h2>Add Expenses</h2>
+
         <form onSubmit={handleAddExpense}>
           <div className="input expense-name">
             <p>Expense Name</p>
@@ -162,10 +188,18 @@ export default function Expenses() {
 
           <div className="input expense-amount">
             <p>Amount</p>
-            <input type="number" name="amount" required placeholder="Amount"
+            <input
+              type="number"
+              name="amount"
+              min="0"
+              step="0.01"
+              required
+              placeholder="Amount"
               value={expense.amount}
-              onChange={handleChange} />
+              onChange={handleChange}
+            />
           </div>
+
           <div className="input expense-category">
             <p>Category</p>
             <select
@@ -174,52 +208,69 @@ export default function Expenses() {
               value={expense.category}
               onChange={handleChange}
             >
-              <option value="Food">Food</option>
-              <option value="Transport">Transport</option>
-              <option value="Entertainment">Entertainment</option>
-              <option value="Travel">Travel</option>
-              <option value="Education">Education</option>
-              <option value="Healthcare">Healthcare</option>
-              <option value="Shopping">Shopping</option>
-              <option value="Bills">Bills</option>
-              <option value="Other">Other</option>
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
             </select>
           </div>
-          <div className='input expense-date'>
+
+          <div className="input expense-date">
             <p>Date</p>
-            <input type="date" name="date" required value={expense.date} onChange={handleChange} />
+            <input
+              type="date"
+              name="date"
+              required
+              value={expense.date}
+              onChange={handleChange}
+            />
           </div>
+
           <button className="submit-btn" type="submit">
-            <PlusCircleIcon size={28} color="#f8f8f8" weight="duotone" />
+            <PlusCircleIcon size={22} weight="duotone" />
             <span>Add Expense</span>
           </button>
         </form>
       </div>
+
       <div className="all-expenses">
         <div className="header-expense-list">
           <div className="search-expenses-and-filter">
             <div className="search-expenses">
-              <input type="text" name="search" placeholder="Search Expenses" value={filters.search} onChange={handleFilterChange} />
+              <input
+                type="text"
+                name="search"
+                placeholder="Search Expenses"
+                value={filters.search}
+                onChange={handleFilterChange}
+              />
             </div>
+
             <div className="filter-expenses">
-              <div className="select category">
+              <div className="select">
                 <p>Category</p>
-                <select name="category" value={filters.category} onChange={handleFilterChange}>
+                <select
+                  name="category"
+                  value={filters.category}
+                  onChange={handleFilterChange}
+                >
                   <option value="">All Category</option>
-                  <option value="Food">Food</option>
-                  <option value="Transport">Transport</option>
-                  <option value="Entertainment">Entertainment</option>
-                  <option value="Travel">Travel</option>
-                  <option value="Education">Education</option>
-                  <option value="Healthcare">Healthcare</option>
-                  <option value="Shopping">Shopping</option>
-                  <option value="Bills">Bills</option>
-                  <option value="Other">Other</option>
+                  {categories.map((category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
                 </select>
               </div>
-              <div className="select sort">
+
+              <div className="select">
                 <p>Sort By</p>
-                <select name="sort" value={filters.sort} onChange={handleFilterChange}>
+                <select
+                  name="sort"
+                  value={filters.sort}
+                  onChange={handleFilterChange}
+                >
                   <option value="">None</option>
                   <option value="amount-asc">Amount (Low to High)</option>
                   <option value="amount-desc">Amount (High to Low)</option>
@@ -229,78 +280,94 @@ export default function Expenses() {
               </div>
             </div>
           </div>
+
           <div className="total-number-expenses">
             <div className="final-expense-card number">
               <div className="final-expense-card-img number-img">
-                <ListBulletsIcon size={32} color="#ffff" weight="bold" />
+                <ListBulletsIcon size={32} color="#fff" weight="bold" />
               </div>
-              <div className="final-expense-card-info number-info">
+
+              <div>
                 <p className="info-title">Total Expenses:</p>
                 <p className="info-p">{sortedExpenses.length}</p>
               </div>
             </div>
+
             <div className="final-expense-card total">
               <div className="final-expense-card-img total-img">
-                <WalletIcon size={32} color="#ffff" weight="bold" />
+                <WalletIcon size={32} color="#fff" weight="bold" />
               </div>
-              <div className="final-expense-card-info total-info">
-                <p className="info-title">Total Amount: </p>
-                <p className="info-p">₹{sortedExpenses.reduce((sum, expense) => sum + (expense.amount || 0), 0).toFixed(2)}</p>
+
+              <div>
+                <p className="info-title">Total Amount:</p>
+                <p className="info-p">₹{totalAmount.toFixed(2)}</p>
               </div>
             </div>
           </div>
         </div>
+
         <div className="expense-list">
-          {sortedExpenses.map((expense) => {
-            const Icon = categoryIcons[expense.category] || PackageIcon;
+          {sortedExpenses.map((item) => {
+            const Icon = categoryIcons[item.category] || PackageIcon;
 
             return (
-              <div className="expense-card" key={expense.id}>
+              <div className="expense-card" key={item.id}>
                 <div className="expense-left">
-
-                  <div className="expense-icon"
+                  <div
+                    className="expense-icon"
                     style={{
-                      backgroundColor: categoryBackgroundColors[expense.category],
+                      backgroundColor:
+                        categoryBackgroundColors[item.category]
                     }}
                   >
-                    {/* 🍔 */}
-                    <Icon size={28} weight="duotone" color={categoryColors[expense.category]} />
+                    <Icon
+                      size={28}
+                      weight="duotone"
+                      color={categoryColors[item.category]}
+                    />
                   </div>
 
                   <div className="expense-info">
-                    <p>{expense.category}</p>
-                    <h4>{expense.name}</h4>
+                    <p>{item.category}</p>
+                    <h4>{item.name}</h4>
                   </div>
-
                 </div>
 
                 <div className="expense-right">
                   <div className="amount-date">
                     <p className="amount-p">
-                      ₹{expense.amount.toFixed(2)}
+                      ₹{item.amount.toFixed(2)}
                     </p>
-                    <p className="date">{expense.date
-                      ? new Date(expense.date).toLocaleDateString("en-GB", {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric",
-                      })
-                      : ""}
+
+                    <p className="date">
+                      {item.date
+                        ? new Date(item.date).toLocaleDateString("en-GB", {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric"
+                          })
+                        : ""}
                     </p>
                   </div>
 
                   <div className="btn-delete">
-                    <button onClick={() => handleDeleteExpense(expense.id)}>
-                      <TrashIcon size={20} color="#ff7a7a" weight="duotone" />
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteExpense(item.id)}
+                    >
+                      <TrashIcon
+                        size={20}
+                        color="#ff7a7a"
+                        weight="duotone"
+                      />
                     </button>
                   </div>
                 </div>
               </div>
             );
           })}
-
         </div>
       </div>
     </div>
-  )
+  );
 }

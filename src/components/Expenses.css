@@ -3,8 +3,8 @@
 }
 
 .expense-tracker {
-  display: flex;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: 24px;
   width: 100%;
   min-height: 100vh;
@@ -12,10 +12,9 @@
   background: #f9fafb;
 }
 
-
 .add-expenses {
-  flex: 0 0 320px;
-  width: 320px;
+  width: 100%;
+  height: fit-content;
   padding: 20px;
   background: #fff;
   border: 1px solid #e5e7eb;
@@ -23,15 +22,26 @@
 }
 
 .add-expenses h2 {
-  margin: 0 0 16px;
-  font-size: 24px;
+  margin: 0 0 20px;
+  font-size: 23px;
   line-height: 1.2;
+  color: #111827;
 }
 
-.add-expenses form {
+
+.add-expenses .input {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+  margin: 0;
+}
+
+.add-expenses .input p {
+  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-top: 10px;
 }
 
 .add-expenses input,
@@ -42,9 +52,13 @@
   border: 1px solid #d1d5db;
   border-radius: 9px;
   outline: none;
-  font-size: 14px;
   background: #fff;
   color: #111827;
+  font-size: 14px;
+}
+
+.add-expenses input::placeholder {
+  color: #9ca3af;
 }
 
 .add-expenses input:focus,
@@ -52,7 +66,7 @@
 .select select:focus,
 .search-expenses input:focus {
   border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.08);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
 }
 
 .submit-btn {
@@ -62,6 +76,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+  margin-top: 20px;
   border: 0;
   border-radius: 9px;
   background: #00ad70;
@@ -69,15 +84,19 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .submit-btn:hover {
   background: #009961;
 }
 
+.submit-btn:active {
+  transform: translateY(1px);
+}
+
 .all-expenses {
-  flex: 1;
+  width: 100%;
   min-width: 0;
   max-height: calc(100vh - 48px);
   overflow-y: auto;
@@ -96,14 +115,13 @@
 }
 
 .search-expenses-and-filter {
-  display: flex;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) minmax(280px, 1.8fr);
   gap: 12px;
   margin-bottom: 18px;
 }
 
 .search-expenses {
-  flex: 1;
   min-width: 0;
 }
 
@@ -114,26 +132,25 @@
   border: 1px solid #ccc;
   border-radius: 9px;
   outline: none;
-  font-size: 14px;
   background: #fff;
+  font-size: 14px;
 }
 
 .filter-expenses {
-  display: flex;
-  flex: 1.8;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   min-width: 0;
 }
 
 .select {
-  flex: 1;
   min-width: 0;
 }
 
 .select p {
   margin: 0 0 5px;
-  font-size: 13px;
   color: #333;
+  font-size: 13px;
 }
 
 .select select {
@@ -144,8 +161,8 @@
   border-radius: 9px;
   outline: none;
   background: #fff;
-  font-size: 14px;
   color: #111827;
+  font-size: 14px;
 }
 
 .total-number-expenses {
@@ -202,9 +219,9 @@
 
 .info-p {
   margin: 4px 0 0;
+  color: #111827;
   font-size: 22px;
   font-weight: 500;
-  color: #111827;
 }
 
 .expense-list {
@@ -224,9 +241,7 @@
   border: 1px solid #e5e7eb;
   border-radius: 14px;
   background: #fff;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .expense-card:hover {
@@ -250,7 +265,6 @@
   align-items: center;
   justify-content: center;
   border-radius: 12px;
-  background: #eff6ff;
   font-size: 24px;
 }
 
@@ -261,6 +275,7 @@
 .expense-info h4 {
   margin: 0;
   overflow: hidden;
+  color: #111827;
   font-size: 15px;
   font-weight: 600;
   line-height: 1.3;
@@ -277,20 +292,15 @@
   white-space: nowrap;
 }
 
-.expense-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 5px;
-  color: #6b7280;
-  font-size: 12px;
-}
-
 .expense-right {
   display: flex;
   align-items: center;
   gap: 18px;
   flex-shrink: 0;
+}
+
+.amount-date {
+  text-align: right;
 }
 
 .amount-p {
@@ -302,7 +312,7 @@
 }
 
 .date {
-  margin: 0;
+  margin: 2px 0 0;
   color: #555;
   font-size: 13px;
   white-space: nowrap;
@@ -319,138 +329,10 @@
   outline: 0;
   border-radius: 8px;
   background: transparent;
-  color: #ff5b63;
   cursor: pointer;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .btn-delete button:hover {
   background: #fff1f2;
-  color: #e11d48;
-}
-
-
-@media (max-width: 900px) {
-  .expense-tracker {
-    flex-direction: column;
-  }
-
-  .add-expenses {
-    width: 100%;
-    flex: none;
-    max-width: none;
-  }
-
-  .all-expenses {
-    width: 100%;
-    max-height: none;
-  }
-
-  .search-expenses-and-filter {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .filter-expenses {
-    width: 100%;
-  }
-}
-
-@media (max-width: 600px) {
-  .expense-tracker {
-    gap: 16px;
-    padding: 12px;
-  }
-
-  .add-expenses,
-  .all-expenses {
-    border-radius: 12px;
-  }
-
-  .add-expenses {
-    padding: 16px;
-  }
-
-  .add-expenses h2 {
-    font-size: 21px;
-  }
-
-  .header-expense-list {
-    padding: 14px;
-  }
-
-  .filter-expenses {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .total-number-expenses {
-    grid-template-columns: 1fr;
-  }
-
-  .expense-list {
-    padding: 6px 14px 14px;
-  }
-
-  .expense-card {
-    align-items: flex-start;
-    padding: 12px;
-  }
-
-  .expense-left {
-    align-items: flex-start;
-  }
-
-  .expense-icon {
-    width: 44px;
-    height: 44px;
-    flex-basis: 44px;
-    font-size: 20px;
-  }
-
-  .expense-info h4 {
-    white-space: normal;
-  }
-
-  .expense-info p {
-    white-space: normal;
-  }
-
-  .expense-right {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 6px;
-  }
-
-  .date {
-    font-size: 11px;
-  }
-
-  .amount-p {
-    font-size: 15px;
-  }
-}
-
-
-@media (max-width: 420px) {
-  .expense-card {
-    flex-direction: column;
-  }
-
-  .expense-left {
-    width: 100%;
-  }
-
-  .expense-right {
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .btn-delete {
-    margin-left: auto;
-  }
 }
